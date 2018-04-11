@@ -12,7 +12,7 @@
 <input name="myUserName"/><br/>
 
 Password:<br/>
-<input name="myPassword" type="password"/><br/><br/>
+<input name="pwd" type="password"/><br/><br/>
 
 <!--<anchor>
 <go method="get" href="m2.wml">
