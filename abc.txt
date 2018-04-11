@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPEwml PUBLIC "-//WAPFORUM//DTD WML 1.3//EN" "http://www.wapforum.org/DTD/wml13.dtd">
+
+<wml>
+<card id="card1" title="WML Form">
+<p>
+<big>Registration Form</big><br/>
+      Notice: Fields with * are required.<br/><br/>
+
+<b>$(errorMsg)</b><br/>
+      User name:<br/>
+<input name="myUserName"/><br/>
+
+Password:<br/>
+<input name="myPassword" type="password"/><br/><br/>
+
+<!--<anchor>
+<go method="get" href="m2.wml">
+<postfield name="name" value="$(myUserName)"/>
+<postfield name="password" value="$(myPassword)"/>
+</go>
+        Submit Data
+</anchor><br/>-->
+<a href="validateFormEg1.wmls#validate()">Submit Form Data</a>
+
+
+<anchor>
+<refresh>
+<setvar name="myUserName" value=""/>
+<setvar name="myPassword" value=""/>
+</refresh>
+        Reset Form
+</anchor>
+</p>
+</card>
+</wml>
+Arith.wml
+<?xml version="1.0"?>
+<!DOCTYPEwml PUBLIC "-//WAPFORUM//DTD WML 1.3//EN" "http://www.wapforum.org/DTD/wml13.dtd">
+
+<wml>
+<card id="card" title="Hello ASP">
+<p>
+    Enter 1st number:
+<input name="x" title="1st number" format="*N"/><br/>
+
+    Select Operation:
+<select name="op" title="Operator">
+<option value="+">Plus</option>
+<option value="-">Minus</option>
+<option value="*">Multiply</option>
+<option value="/">Divide</option>
+</select>
+
+    Enter 2nd number:
+<input name="y" title="2nd number" format="*N"/><br/>
+
+<a href="calculator.wmls#solve($(x), $(y))">
+    Calculate</a><br/><br/><br/><br/>
+	
+	<a href="calendar.wml">
+Calandar of the month</a>
+</p>
+</card>
+
+<card id="result" title="Result">
+<p>
+    Here is the result:<br/>
+    $(x) $(op) $(y) = $(r)
+</p>
+<do type="accept" label="Back">
+<prev/>
+</do>
+</card>
+</wml>
+
+Calculator.wmls
+extern function solve(a, b)
+{
+var d = WMLBrowser.getVar("op");
+var z = 0;
+
+if (d == "+"){
+    z = a + b;
+  }
+else if (d == "-"){
+    z = a - b;
+  }
+else if (d == "*"){
+    z = a * b;
+  }
+else if (d == "/"){
+    z = a / b;
+  }
+WMLBrowser.setVar("r", z);
+WMLBrowser.go("#result");
+WMLBrowser.refresh();
+}
+
+
